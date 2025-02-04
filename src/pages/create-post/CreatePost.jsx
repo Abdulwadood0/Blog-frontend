@@ -49,8 +49,13 @@ const CreatePost = () => {
 
     useEffect(() => {
         dispatch(fetchCategories())
-        setCategory(categories)
     }, [])
+
+    useEffect(() => {
+        if (categories.length > 0) {
+            setCategory(categories[0].title); // ✅ Set the first category title as default
+        }
+    }, [categories]);
 
     return (
         <section className="create-post">
@@ -77,10 +82,10 @@ const CreatePost = () => {
                     <option disabled value="">
                         Select A Category
                     </option>
-                    {categories.map(category =>
-                        <option value={category.title}
-                            key={category._id}
-                        >{category.title}</option>)}
+                    {categories?.map(category =>
+                        <option value={category?.title}
+                            key={category?._id}
+                        >{category?.title}</option>)}
                 </select>
 
                 <textarea
