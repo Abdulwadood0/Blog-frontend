@@ -34,7 +34,6 @@ const CreatePost = () => {
         formData.append("description", description);
         formData.append("category", category);
         formData.append("image", file);
-        console.log(formData);
 
 
         dispatch(createPost(formData));
@@ -44,7 +43,6 @@ const CreatePost = () => {
     const navigate = useNavigate();
     useEffect(() => {
         if (isPostCreated) {
-            console.log("Post Created Successfully");
             navigate("/");
         }
     }, [isPostCreated, navigate])
@@ -82,8 +80,7 @@ const CreatePost = () => {
                     {categories.map(category =>
                         <option value={category.title}
                             key={category._id}
-                        >{category.title}{console.log(category.title)
-                            }</option>)}
+                        >{category.title}</option>)}
                 </select>
 
                 <textarea

@@ -37,7 +37,7 @@ export function registerUser(user) {
 
             const { data } = await request.post("/api/auth/register", user)
 
-            dispatch(authActions.register(data.message));
+            dispatch(authActions.register(data?.message));
 
 
         } catch (error) {
