@@ -3,12 +3,18 @@ import "./form.css"
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { loginUser } from "../../redux/apiCalls/authApiCall";
+
+import ClipLoader from "react-spinners/ClipLoader";
+
 const Login = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const { isLoading } = useSelector(state => state.loading);
+
 
     const dispatch = useDispatch();
 
@@ -19,6 +25,24 @@ const Login = () => {
 
         dispatch(loginUser({ email, password }))
     }
+
+
+
+    if (isLoading) {
+        return (
+            <div className="loader">
+                <ClipLoader
+                    color="blue"
+                    loading={true}
+                    size={150}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                />
+            </div>
+
+        )
+    }
+
     return (
         <section className="form-container">
             <h1 className="form-title">Login to your account</h1>
