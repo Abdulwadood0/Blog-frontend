@@ -8,18 +8,18 @@ import { toast } from "react-toastify";
 export function loginUser(user) {
     return async (dispatch) => {
         try {
-            dispatch(loadingActions.startLoading());
+            dispatch(loadingActions.setLoading());
 
             const { data } = await request.post("/api/auth/login", user)
 
             dispatch(authActions.login(data));
 
             localStorage.setItem("userInfo", JSON.stringify(data));
-            dispatch(loadingActions.stopLoading());
+            dispatch(loadingActions.clearIsLoading());
 
         } catch (error) {
             toast.error(error.response.data.message);
-            dispatch(loadingActions.stopLoading());
+            dispatch(loadingActions.clearIsLoading());
         }
     }
 }
