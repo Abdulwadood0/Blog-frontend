@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchPosts } from "../../redux/apiCalls/postApiCall";
+import ClipLoader from "react-spinners/ClipLoader";
+
 
 const Home = () => {
 
@@ -17,7 +19,23 @@ const Home = () => {
 
     const { posts } = useSelector(state => state.post);
 
+    const { isLoading } = useSelector(state => state.loading);
 
+
+    if (isLoading) {
+        return (
+            <div className="loader">
+                <ClipLoader
+                    color="blue"
+                    loading={true}
+                    size={150}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                />
+            </div>
+
+        )
+    }
     return (
         <section className="home">
             <div className="home-hero-header">

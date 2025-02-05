@@ -5,6 +5,7 @@ import { postReducer } from './slices/postSlice'
 import { categoryReducer } from './slices/categorySlice'
 import { commentReducer } from './slices/commentSlice'
 import { passwordReducer } from './slices/passwordSlice'
+import { loadingReducer } from './slices/loadingSlice'
 
 export const store = configureStore({
     reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
         category: categoryReducer,
         comment: commentReducer,
         password: passwordReducer,
+        loading: loadingReducer,
     },
 })

@@ -1,17 +1,21 @@
 import { postActions } from "../slices/postSlice";
 import request from "../../utils/requset";
 import { toast } from "react-toastify";
+import { loadingActions } from "../slices/loadingSlice";
 
 //Fetch Posts based on page number
 export function fetchPosts(pageNumber) {
     return async (dispatch) => {
         try {
+            dispatch(loadingActions.setLoading())
 
             const { data } = await request.get(`/api/posts?pageNumber=${pageNumber}`);
             dispatch(postActions.setPosts(data));
+            dispatch(loadingActions.clearIsLoading());
 
         } catch (error) {
             toast.error(error.response.data.message);
+            dispatch(loadingActions.clearIsLoading());
         }
     }
 }
