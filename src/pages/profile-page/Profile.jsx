@@ -150,9 +150,11 @@ const Profile = () => {
             </div>
 
 
-            <button onClick={deleteAccountHandler} className="delete-account-btn">
+            {user?._id === profile?._id && <button onClick={deleteAccountHandler} className="delete-account-btn">
                 Delete Your Acoount
-            </button>
+            </button>}
+
+
 
             {updateProfile && <UpdateProfileModal profile={profile} setUpdateProfile={setUpdateProfile} />}
         </section>
