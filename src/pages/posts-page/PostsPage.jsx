@@ -5,11 +5,13 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import "./posts-page.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts, getPostsCount } from "../../redux/apiCalls/postApiCall";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const POST_PER_PAGE = 3;
 const PostsPage = () => {
     const dispatch = useDispatch();
     const { postsCount, posts } = useSelector(state => state.post);
+    const { isLoading } = useSelector(state => state.loading);
 
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -24,6 +26,21 @@ const PostsPage = () => {
     useEffect(() => {
         dispatch(getPostsCount());
     }, [])
+
+    if (isLoading) {
+        return (
+            <div className="loader">
+                <ClipLoader
+                    color="blue"
+                    loading={true}
+                    size={150}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                />
+            </div>
+
+        )
+    }
 
     return (
         <>

@@ -25,13 +25,16 @@ export function fetchPosts(pageNumber) {
 export function fetchAllPosts(pageNumber) {
     return async (dispatch) => {
         try {
+            dispatch(loadingActions.setLoading())
 
             const { data } = await request.get(`/api/posts`);
             dispatch(postActions.setPosts(data));
+            dispatch(loadingActions.clearIsLoading());
 
 
         } catch (error) {
             toast.error(error.response.data.message);
+            dispatch(loadingActions.clearIsLoading());
         }
     }
 }
@@ -41,12 +44,15 @@ export function fetchAllPosts(pageNumber) {
 export function getPostsCount(pageNumber) {
     return async (dispatch) => {
         try {
+            dispatch(loadingActions.setLoading())
 
             const { data } = await request.get(`/api/posts/count`);
             dispatch(postActions.setPostsCount(data));
+            dispatch(loadingActions.clearIsLoading());
 
         } catch (error) {
             toast.error(error.response.data.message);
+            dispatch(loadingActions.clearIsLoading());
         }
     }
 }
@@ -97,12 +103,15 @@ export function createPost(post) {
 export function fetchSinglePost(postId) {
     return async (dispatch) => {
         try {
+            dispatch(postActions.setLoading());
 
             const { data } = await request.get(`/api/posts/${postId}`);
             dispatch(postActions.setPost(data));
+            dispatch(loadingActions.clearIsLoading());
 
         } catch (error) {
             toast.error(error.response.data.message);
+            dispatch(loadingActions.clearIsLoading());
         }
     }
 }
@@ -134,6 +143,8 @@ export function updatePostImage(newImage, postId) {
     return async (dispatch, getState) => {
 
         try {
+            dispatch(loadingActions.setLoading())
+
             await request.put(`/api/posts/${postId}`, newImage, {
                 headers: {
                     Authorization: `Bearer ${getState().auth.user.token}`,
@@ -142,9 +153,11 @@ export function updatePostImage(newImage, postId) {
             });
 
             toast.success("Post Image Updated Successfully");
+            dispatch(loadingActions.clearIsLoading());
 
         } catch (error) {
             toast.error(error.response.data.message);
+            dispatch(loadingActions.clearIsLoading());
         }
     }
 }
@@ -156,6 +169,7 @@ export function updatePost(newPost, postId) {
     return async (dispatch, getState) => {
 
         try {
+            dispatch(loadingActions.setLoading())
 
             const { data } = await request.put(`/api/posts/${postId}`, newPost, {
                 headers: {
@@ -165,9 +179,11 @@ export function updatePost(newPost, postId) {
             });
 
             dispatch(postActions.setPost(data));
+            dispatch(loadingActions.clearIsLoading())
 
         } catch (error) {
             toast.error(error.response.data.message);
+            dispatch(loadingActions.clearIsLoading());
         }
     }
 }
@@ -178,6 +194,7 @@ export function deletePost(postId) {
 
     return async (dispatch, getState) => {
         try {
+            dispatch(loadingActions.setLoading())
 
             const { data } = await request.delete(`/api/posts/${postId}`, {
                 headers: {
@@ -188,9 +205,11 @@ export function deletePost(postId) {
             dispatch(postActions.deletePost(postId));
             toast.success(data.message);
             dispatch(postActions.clearIsPostCreated());
+            dispatch(loadingActions.clearIsLoading());
 
         } catch (error) {
             toast.error(error.response.data.message);
+            dispatch(loadingActions.clearIsLoading());
         }
     }
 }

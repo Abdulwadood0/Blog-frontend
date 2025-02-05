@@ -13,12 +13,14 @@ import UpdatePostModal from "./UpdatePostModal";
 import { useDispatch, useSelector } from "react-redux";
 import { deletePost, fetchSinglePost, toggleLikePost, updatePostImage } from "../../redux/apiCalls/postApiCall";
 import dayjs from "dayjs";
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 const PostDetails = () => {
     const dispatch = useDispatch();
     const { post } = useSelector(state => state.post);
     const { user } = useSelector(state => state.auth);
+    const { isLoading } = useSelector(state => state.loading);
 
 
 
@@ -68,6 +70,21 @@ const PostDetails = () => {
 
             }
         });
+    }
+
+    if (isLoading) {
+        return (
+            <div className="loader">
+                <ClipLoader
+                    color="blue"
+                    loading={true}
+                    size={150}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                />
+            </div>
+
+        )
     }
 
     return (
