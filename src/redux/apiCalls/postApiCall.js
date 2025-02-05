@@ -103,7 +103,7 @@ export function createPost(post) {
 export function fetchSinglePost(postId) {
     return async (dispatch) => {
         try {
-            dispatch(postActions.setLoading());
+            dispatch(loadingActions.setLoading());
 
             const { data } = await request.get(`/api/posts/${postId}`);
             dispatch(postActions.setPost(data));
