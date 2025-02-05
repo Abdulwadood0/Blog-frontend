@@ -5,11 +5,14 @@ import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPostsBasedOnCategory } from "../../redux/apiCalls/postApiCall";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Category = () => {
 
     const dispatch = useDispatch();
     const { postsCategories } = useSelector((state) => state.post);
+    const { isLoading } = useSelector(state => state.loading);
+
 
     const { category } = useParams();
 
@@ -18,6 +21,21 @@ const Category = () => {
         window.scrollTo(0, 0); // scroll to the top of the page when the component renders
     }, [category])
 
+
+    if (isLoading) {
+        return (
+            <div className="loader">
+                <ClipLoader
+                    color="blue"
+                    loading={true}
+                    size={150}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                />
+            </div>
+
+        )
+    }
 
     return (
         <section className="category">

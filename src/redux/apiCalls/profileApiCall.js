@@ -2,17 +2,22 @@ import { profileActions } from "../slices/profileSlice";
 import request from "../../utils/requset";
 import { authActions } from "../slices/authSlice";
 import { toast } from "react-toastify";
+import { loadingActions } from "../slices/loadingSlice";
 
 //Get User profile
 export function getUserProfile(userId) {
     return async (dispatch) => {
         try {
+            dispatch(loadingActions.setLoading())
 
             const { data } = await request.get(`/api/users/profile/${userId}`);
             dispatch(profileActions.setProfile(data));
+            dispatch(loadingActions.clearIsLoading())
 
         } catch (error) {
             toast.error(error.response.data.message);
+            dispatch(loadingActions.clearIsLoading())
+
         }
     }
 }

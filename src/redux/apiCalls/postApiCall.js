@@ -55,12 +55,15 @@ export function getPostsCount(pageNumber) {
 export function fetchPostsBasedOnCategory(category) {
     return async (dispatch) => {
         try {
+            dispatch(loadingActions.setLoading())
 
             const { data } = await request.get(`/api/posts?category=${category}`);
             dispatch(postActions.setPostsCatrgories(data));
+            dispatch(loadingActions.clearIsLoading());
 
         } catch (error) {
             toast.error(error.response.data.message);
+            dispatch(loadingActions.clearIsLoading());
         }
     }
 }

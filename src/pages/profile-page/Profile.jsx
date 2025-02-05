@@ -13,6 +13,8 @@ const Profile = () => {
     const dispatch = useDispatch();
     const { profile, loading, isProfileDeleted } = useSelector((state) => state.profile);
     const { user } = useSelector((state) => state.auth);
+    const { isLoading } = useSelector(state => state.loading);
+
 
     const navigate = useNavigate();
 
@@ -68,6 +70,22 @@ const Profile = () => {
             navigate("/");
         }
     }, [navigate, isProfileDeleted])
+
+
+    if (isLoading) {
+        return (
+            <div className="loader">
+                <ClipLoader
+                    color="blue"
+                    loading={true}
+                    size={150}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                />
+            </div>
+
+        )
+    }
 
     if (loading) {
         return (
