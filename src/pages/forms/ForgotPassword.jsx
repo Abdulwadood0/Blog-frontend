@@ -1,8 +1,9 @@
 import "./form.css"
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { forgotPassword } from "../../redux/apiCalls/passwordApiCall";
+import Loader from "../../components/loader/Loader";
 const ForgotPassword = () => {
     const dispatch = useDispatch();
 
@@ -14,6 +15,16 @@ const ForgotPassword = () => {
         if (email === "") return toast.error("Email is required");
 
         dispatch(forgotPassword(email))
+    }
+
+    const { isLoading } = useSelector(state => state.loading);
+
+
+    if (isLoading) {
+        return (
+
+            <Loader />
+        )
     }
 
     return (

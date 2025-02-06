@@ -9,6 +9,7 @@ import { deleteProfile, getUserProfile, UploadProfilePhoto } from "../../redux/a
 import PostItem from "../../components/posts/PostItem";
 import ClipLoader from "react-spinners/ClipLoader";
 import { logoutUser } from "../../redux/apiCalls/authApiCall"
+import Loader from "../../components/loader/Loader";
 const Profile = () => {
     const dispatch = useDispatch();
     const { profile, loading, isProfileDeleted } = useSelector((state) => state.profile);
@@ -74,15 +75,7 @@ const Profile = () => {
 
     if (isLoading) {
         return (
-            <div className="loader">
-                <ClipLoader
-                    color="blue"
-                    loading={true}
-                    size={150}
-                    aria-label="Loading Spinner"
-                    data-testid="loader"
-                />
-            </div>
+            <Loader />
 
         )
     }
@@ -154,7 +147,6 @@ const Profile = () => {
 
             <div className="profile-posts-list">
                 <h2>{profile?.username} Posts</h2>
-                {console.log(profile)}
                 {profile?.posts?.map((post) =>
                     <PostItem
                         post={post}

@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom"
 import { getResetPassword, resetPassword } from "../../redux/apiCalls/passwordApiCall";
+import Loader from "../../components/loader/Loader";
 
 const ResetPassword = () => {
     const dispatch = useDispatch();
@@ -24,6 +25,18 @@ const ResetPassword = () => {
 
         dispatch(resetPassword(password, { userId, token }));
     }
+
+    const { isLoading } = useSelector(state => state.loading);
+
+
+    if (isLoading) {
+        return (
+
+            <Loader />
+        )
+    }
+
+
     return (
         <section className="form-container">
             {isError ? <h1>Not Found</h1> :

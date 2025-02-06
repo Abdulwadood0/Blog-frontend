@@ -2,7 +2,7 @@ import "./update-post.css"
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSinglePost, updatePost } from "../../redux/apiCalls/postApiCall";
+import { updatePost } from "../../redux/apiCalls/postApiCall";
 import { fetchCategories } from "../../redux/apiCalls/categoryApiCall";
 const UpdatePostModal = ({ setUpdatePost, post }) => {
     const dispatch = useDispatch();

@@ -5,11 +5,14 @@ import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../redux/apiCalls/authApiCall";
 import Swal from "sweetalert2";
+import Loader from "../../components/loader/Loader";
+import { authActions } from "../../redux/slices/authSlice";
 
 const Register = () => {
 
     const dispatch = useDispatch();
     const { registerMessage } = useSelector((state) => state.auth);
+    const { isLoading } = useSelector(state => state.loading);
 
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -34,8 +37,17 @@ const Register = () => {
         }).then(result => {
             if (result.isConfirmed) {
                 navigate("/login");
+                dispatch(authActions.clearRegisterMessage());
             }
         })
+    }
+
+
+    if (isLoading) {
+        return (
+
+            <Loader />
+        )
     }
 
 

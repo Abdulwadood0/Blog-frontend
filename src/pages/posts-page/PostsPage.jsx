@@ -5,7 +5,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import "./posts-page.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts, getPostsCount } from "../../redux/apiCalls/postApiCall";
-import ClipLoader from "react-spinners/ClipLoader";
+import Loader from "../../components/loader/Loader";
 
 const POST_PER_PAGE = 3;
 const PostsPage = () => {
@@ -29,16 +29,7 @@ const PostsPage = () => {
 
     if (isLoading) {
         return (
-            <div className="loader">
-                <ClipLoader
-                    color="blue"
-                    loading={true}
-                    size={150}
-                    aria-label="Loading Spinner"
-                    data-testid="loader"
-                />
-            </div>
-
+            <Loader />
         )
     }
 

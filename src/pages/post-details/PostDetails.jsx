@@ -13,7 +13,7 @@ import UpdatePostModal from "./UpdatePostModal";
 import { useDispatch, useSelector } from "react-redux";
 import { deletePost, fetchSinglePost, toggleLikePost, updatePostImage } from "../../redux/apiCalls/postApiCall";
 import dayjs from "dayjs";
-import ClipLoader from "react-spinners/ClipLoader";
+import Loader from "../../components/loader/Loader";
 
 
 const PostDetails = () => {
@@ -74,15 +74,7 @@ const PostDetails = () => {
 
     if (isLoading) {
         return (
-            <div className="loader">
-                <ClipLoader
-                    color="blue"
-                    loading={true}
-                    size={150}
-                    aria-label="Loading Spinner"
-                    data-testid="loader"
-                />
-            </div>
+            <Loader />
 
         )
     }

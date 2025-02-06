@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPostsBasedOnCategory } from "../../redux/apiCalls/postApiCall";
-import ClipLoader from "react-spinners/ClipLoader";
+import Loader from "../../components/loader/Loader";
 
 const Category = () => {
 
@@ -24,15 +24,7 @@ const Category = () => {
 
     if (isLoading) {
         return (
-            <div className="loader">
-                <ClipLoader
-                    color="blue"
-                    loading={true}
-                    size={150}
-                    aria-label="Loading Spinner"
-                    data-testid="loader"
-                />
-            </div>
+            <Loader />
 
         )
     }

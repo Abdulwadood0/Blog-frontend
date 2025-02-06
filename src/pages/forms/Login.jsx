@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux"
 import { loginUser } from "../../redux/apiCalls/authApiCall";
 
-import ClipLoader from "react-spinners/ClipLoader";
+import Loader from "../../components/loader/Loader";
 
 const Login = () => {
 
@@ -30,15 +30,7 @@ const Login = () => {
 
     if (isLoading) {
         return (
-            <div className="loader">
-                <ClipLoader
-                    color="blue"
-                    loading={true}
-                    size={150}
-                    aria-label="Loading Spinner"
-                    data-testid="loader"
-                />
-            </div>
+            <Loader />
 
         )
     }

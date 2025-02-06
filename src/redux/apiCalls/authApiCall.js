@@ -38,14 +38,17 @@ export function logoutUser() {
 export function registerUser(user) {
     return async (dispatch) => {
         try {
+            dispatch(loadingActions.setLoading());
 
             const { data } = await request.post("/api/auth/register", user)
 
             dispatch(authActions.register(data?.message));
+            dispatch(loadingActions.clearIsLoading())
 
 
         } catch (error) {
             toast.error(error.response.data.message);
+            dispatch(loadingActions.clearIsLoading())
         }
     }
 }
@@ -55,14 +58,17 @@ export function registerUser(user) {
 export function verifyEmail(userId, token) {
     return async (dispatch) => {
         try {
+            dispatch(loadingActions.setLoading())
 
             await request.get(`/api/auth/${userId}/verify/${token}`)
 
             dispatch(authActions.setIsEmailVerified());
-
+            dispatch(loadingActions.clearIsLoading())
 
         } catch (error) {
             console.log(error);
+            toast.error("An error occurred while verifying email");
+            dispatch(loadingActions.clearIsLoading())
 
         }
     }
