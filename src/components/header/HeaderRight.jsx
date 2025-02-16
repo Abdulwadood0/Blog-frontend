@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { logoutUser } from "../../redux/apiCalls/authApiCall";
 
 const HeaderRigth = () => {
@@ -20,15 +20,15 @@ const HeaderRigth = () => {
         <div className="header-right">
             {user ?
                 <>
-                    <div className="header-right-user-info"                    >
+                    <div className="header-right-user-info"
+                        onClick={() => setDropdown(!dropdown)}
+                    >
                         <span className="header-right-username"
-                            onClick={() => setDropdown(!dropdown)}
                         >
                             {user?.username}
                         </span>
 
                         <img src={user?.profilePhoto?.url}
-                            onClick={() => setDropdown(!dropdown)}
                             alt="user"
                             className="header-right-user-photo">
 

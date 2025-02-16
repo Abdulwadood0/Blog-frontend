@@ -78,6 +78,7 @@
     display: flex;
     align-items: center;
     position: relative;
+    cursor: pointer;
 }
 
 .header-right-username {
@@ -92,7 +93,7 @@
 .header-right-user-photo {
     width: 40px;
     height: 40px;
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 50%;
 }
 
