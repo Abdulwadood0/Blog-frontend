@@ -20,9 +20,7 @@ const HeaderRigth = () => {
         <div className="header-right">
             {user ?
                 <>
-                    <div className="header-right-user-info"
-                        onClick={() => setDropdown(!dropdown)}
-                    >
+                    <div className="header-right-user-info"                    >
                         <span className="header-right-username"
                             onClick={() => setDropdown(!dropdown)}
                         >
@@ -30,6 +28,7 @@ const HeaderRigth = () => {
                         </span>
 
                         <img src={user?.profilePhoto?.url}
+                            onClick={() => setDropdown(!dropdown)}
                             alt="user"
                             className="header-right-user-photo">
 
