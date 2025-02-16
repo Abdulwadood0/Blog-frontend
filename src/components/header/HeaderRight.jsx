@@ -20,7 +20,9 @@ const HeaderRigth = () => {
         <div className="header-right">
             {user ?
                 <>
-                    <div className="header-right-user-info">
+                    <div className="header-right-user-info"
+                        onClick={() => setDropdown(!dropdown)}
+                    >
                         <span className="header-right-username"
                             onClick={() => setDropdown(!dropdown)}
                         >
