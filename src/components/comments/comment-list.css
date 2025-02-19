@@ -42,6 +42,7 @@
     padding: 10px;
     color: var(--dark-color);
     font-size: 17px;
+    text-align: justify;
 }
 
 .comment-item-icon-wrapper {
