@@ -9,7 +9,6 @@ This is the **frontend** of a full-stack Blog App built with React and Redux. It
 - Global state management using **Redux**
 - Handles all API request states (loading, error, success)
 - Authenticated routes and protected pages
-- Smooth UX with clear feedback on user actions
 
 ## 🛠️ Tech Stack
 
@@ -21,4 +20,5 @@ This is the **frontend** of a full-stack Blog App built with React and Redux. It
 ## 🚀 Deployment
 
 - **Frontend** hosted on [Vercel](https://vercel.com/)
+
 
